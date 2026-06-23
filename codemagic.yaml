@@ -7,18 +7,13 @@ workflows:
       xcode: latest
       cocoapods: default
     scripts:
-      - name: Install npm dependencies
-        script: npm install
-      - name: Setup iOS Platform
+      - name: Full Build Process
         script: |
+          set -ex
+          npm install
           chmod +x node_modules/.bin/cap
           npx cap add ios || true
           npx cap sync ios
-      - name: Install CocoaPods
-        script: |
           cd ios/App
           pod install --repo-update
-      - name: Build iOS (Unsigned)
-        script: |
-          cd ios/App
           xcodebuild build -workspace App.xcworkspace -scheme App -destination "generic/platform=iOS" CODE_SIGNING_ALLOWED=NO
