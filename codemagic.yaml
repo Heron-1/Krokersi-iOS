@@ -7,13 +7,19 @@ workflows:
       xcode: latest
       cocoapods: default
     scripts:
-      - name: Full Build Process
+      - name: 1. Sprawdzenie plikow
+        script: ls -la
+      - name: 2. Instalacja NPM
+        script: npm install
+      - name: 3. Capacitor Sync
         script: |
-          set -ex
-          npm install
-          chmod +x node_modules/.bin/cap
           npx cap add ios || true
           npx cap sync ios
+      - name: 4. CocoaPods
+        script: |
           cd ios/App
           pod install --repo-update
+      - name: 5. Xcode Build
+        script: |
+          cd ios/App
           xcodebuild build -workspace App.xcworkspace -scheme App -destination "generic/platform=iOS" CODE_SIGNING_ALLOWED=NO
