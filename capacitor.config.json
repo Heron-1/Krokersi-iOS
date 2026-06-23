@@ -1,0 +1,10 @@
+{
+  "appId": "pl.krokersi.app",
+  "appName": "Krokersi",
+  "webDir": "www",
+  "bundledWebRuntime": false,
+  "server": {
+    "url": "https://krokersi.com",
+    "cleartext": true
+  }
+}
