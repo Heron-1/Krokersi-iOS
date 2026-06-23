@@ -4,19 +4,19 @@ workflows:
     instance_type: mac_mini_m1
     environment:
       node: 22
-      cocoapods: default
     scripts:
-      - name: 1. Przygotowanie srodowiska
+      - name: Instalacja i Build
         script: |
+          # 1. Instalacja zaleznosci
           npm install
-          # Wymuszamy stworzenie folderu ios w chmurze
+          # 2. Nadanie uprawnien dla wszystkich plikow wykonywalnych w node_modules
+          chmod -R +x node_modules/.bin/
+          # 3. Dodanie platformy ios
           npx cap add ios || true
+          # 4. Synchronizacja
           npx cap sync ios
-      - name: 2. Instalacja CocoaPods
-        script: |
+          # 5. Instalacja Pods (wymuszenie instalacji CocoaPods)
           cd ios/App
-          pod install --repo-update
-      - name: 3. Budowa aplikacji (Unsigned)
-        script: |
-          cd ios/App
+          pod install
+          # 6. Build
           xcodebuild build -workspace App.xcworkspace -scheme App -destination "generic/platform=iOS" CODE_SIGNING_ALLOWED=NO
