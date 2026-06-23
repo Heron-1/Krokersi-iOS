@@ -10,7 +10,9 @@ workflows:
       - name: Install npm dependencies
         script: npm install
       - name: Sync Capacitor iOS
-        script: npx cap sync ios
+        script: |
+          chmod +x node_modules/.bin/cap
+          npx cap sync ios
       - name: Build iOS (Unsigned)
         script: |
           cd ios/App
