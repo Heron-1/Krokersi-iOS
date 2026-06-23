@@ -6,9 +6,13 @@ workflows:
       node: 22
       cocoapods: default
     scripts:
-      - name: 1. Instalacja paczek NPM
-        script: npm install
-      - name: 2. Instalacja wtyczek Apple (CocoaPods)
+      - name: 1. Przygotowanie srodowiska
+        script: |
+          npm install
+          # Wymuszamy stworzenie folderu ios w chmurze
+          npx cap add ios || true
+          npx cap sync ios
+      - name: 2. Instalacja CocoaPods
         script: |
           cd ios/App
           pod install --repo-update
