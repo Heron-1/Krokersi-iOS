@@ -3,7 +3,7 @@ workflows:
     name: Krokersi iOS Build
     instance_type: mac_mini_m1
     environment:
-      node: 18
+      node: 22
       xcode: latest
       cocoapods: default
     scripts:
