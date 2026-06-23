@@ -13,6 +13,10 @@ workflows:
         script: |
           chmod +x node_modules/.bin/cap
           npx cap sync ios
+      - name: Install CocoaPods
+        script: |
+          cd ios/App
+          pod install
       - name: Build iOS (Unsigned)
         script: |
           cd ios/App
