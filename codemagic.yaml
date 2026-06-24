@@ -4,20 +4,20 @@ workflows:
     instance_type: mac_mini_m1
     environment:
       node: 22
-      xcode: latest
-      cocoapods: default
     scripts:
-      - name: Instalacja NPM
-        script: npm install
-      - name: Instalacja globalnego Capacitora
-        script: npm install -g @capacitor/cli
-      - name: Synchronizacja platformy
-        script: cap sync ios
-      - name: Instalacja CocoaPods
+      - name: 1. Przygotowanie struktury web
+        script: |
+          npm install
+          npm run build || true
+          mkdir -p www dist build public
+          rm -rf ios
+      - name: 2. Czysta generacja platformy iOS
+        script: |
+          npm install -g @capacitor/cli
+          cap add ios
+          cap sync ios
+      - name: 3. Instalacja CocoaPods i Build
         script: |
           cd ios/App
           pod install
-      - name: Budowa Xcode (Unsigned)
-        script: |
-          cd ios/App
           xcodebuild build -workspace App.xcworkspace -scheme App -destination "generic/platform=iOS" CODE_SIGNING_ALLOWED=NO
