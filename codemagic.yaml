@@ -8,7 +8,6 @@ workflows:
       - name: Instalacja i Build
         script: |
           npm install
-          # Tworzenie sztucznego srodowiska web, aby Capacitor ruszyl dalej
           mkdir -p www
           echo "<!DOCTYPE html><html><head><title>Krokersi</title></head><body></body></html>" > www/index.html
           rm -rf ios
@@ -16,5 +15,5 @@ workflows:
           npx cap add ios
           npx cap sync ios
           cd ios/App
-          pod install
-          xcodebuild build -workspace App.xcworkspace -scheme App -destination "generic/platform=iOS" CODE_SIGNING_ALLOWED=NO
+          # Kompilacja przez plik .xcodeproj zamiast .xcworkspace
+          xcodebuild build -project App.xcodeproj -scheme App -destination "generic/platform=iOS" CODE_SIGNING_ALLOWED=NO
