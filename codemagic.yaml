@@ -4,6 +4,9 @@ workflows:
     instance_type: mac_mini_m1
     environment:
       node: 22
+      ios_signing:
+        distribution_type: app_store
+        bundle_identifier: pl.krokersi.app
     scripts:
       - name: Instalacja i Build
         script: |
@@ -15,5 +18,10 @@ workflows:
           npx cap add ios
           npx cap sync ios
           cd ios/App
-          # Kompilacja przez plik .xcodeproj zamiast .xcworkspace
-          xcodebuild build -project App.xcodeproj -scheme App -destination "generic/platform=iOS" CODE_SIGNING_ALLOWED=NO
+          xcode-project build-ipa --project "App.xcodeproj" --scheme "App"
+    artifacts:
+      - ios/App/build/ios/ipa/*.ipa
+    publishing:
+      app_store_connect:
+        auth: integration
+        submit_to_testflight: true
