@@ -4,7 +4,7 @@
   "webDir": "www",
   "bundledWebRuntime": false,
   "server": {
-    "url": "https://krokersi.com",
+    "url": "https://krokersi.com/app/index.php",
     "cleartext": true
   }
 }
