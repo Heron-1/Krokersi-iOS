@@ -6,12 +6,10 @@ workflows:
       app_store_connect: Codemagic
     environment:
       node: 22
+      ios_signing:
+        distribution_type: app_store
+        bundle_identifier: pl.krokersi.app
     scripts:
-      - name: Generowanie certyfikatów Apple
-        script: |
-          keychain initialize
-          app-store-connect fetch-signing-files "pl.krokersi.app" --type IOS_APP_STORE --create
-          keychain add-certificates
       - name: Instalacja i Build
         script: |
           npm install
@@ -22,7 +20,6 @@ workflows:
           npx cap add ios
           npx cap sync ios
           cd ios/App
-          xcode-project use-profiles
           xcode-project build-ipa --project "App.xcodeproj" --scheme "App"
     artifacts:
       - ios/App/build/ios/ipa/*.ipa
