@@ -13,6 +13,7 @@ workflows:
       - name: Instalacja i Build
         script: |
           npm install
+          npm install cordova-plugin-pedometer
           npm install @capacitor/assets --no-save
           mkdir -p www
           echo "<!DOCTYPE html><html><head><title>Krokersi</title></head><body></body></html>" > www/index.html
@@ -28,7 +29,6 @@ workflows:
           npx cap sync ios
           cd ios/App
           
-          # Uprawnienia czujników ruchu i GPS (naprawia kroki i trasę)
           /usr/libexec/PlistBuddy -c "Add :NSMotionUsageDescription string 'Aplikacja Krokersi używa czujników do zliczania kroków.'" App/Info.plist || /usr/libexec/PlistBuddy -c "Set :NSMotionUsageDescription 'Aplikacja Krokersi używa czujników do zliczania kroków.'" App/Info.plist
           /usr/libexec/PlistBuddy -c "Add :NSLocationWhenInUseUsageDescription string 'Aplikacja Krokersi używa GPS do zapisu trasy na mapie.'" App/Info.plist || /usr/libexec/PlistBuddy -c "Set :NSLocationWhenInUseUsageDescription 'Aplikacja Krokersi używa GPS do zapisu trasy na mapie.'" App/Info.plist
           
