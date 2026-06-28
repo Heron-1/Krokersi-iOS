@@ -7,10 +7,8 @@ workflows:
     environment:
       node: 22
       ios_signing:
-        provisioning_profiles:
-          - krokersi_profile
-        certificates:
-          - Krokersi Cert
+        distribution_type: app_store
+        bundle_identifier: pl.krokersi.app
     scripts:
       - name: Instalacja i Build
         script: |
