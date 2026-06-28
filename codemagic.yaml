@@ -20,7 +20,8 @@ workflows:
           npx cap add ios
           npx cap sync ios
           cd ios/App
-          xcode-project build-ipa --project "App.xcodeproj" --scheme "App"
+          xcode-project use-profiles
+          xcode-project build-ipa --workspace "App.xcworkspace" --scheme "App"
     artifacts:
       - ios/App/build/ios/ipa/*.ipa
     publishing:
