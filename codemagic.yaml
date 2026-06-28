@@ -22,7 +22,8 @@ workflows:
           npx capacitor-assets generate --ios
           npx cap sync ios
           cd ios/App
-          agvtool new-version -all $BUILD_NUMBER
+          # Twarde ustawienie unikalnego numeru wersji z Codemagic
+          /usr/libexec/PlistBuddy -c "Set :CFBundleVersion $BUILD_NUMBER" App/Info.plist
           xcode-project use-profiles
           xcode-project build-ipa --project "App.xcodeproj" --scheme "App"
     artifacts:
