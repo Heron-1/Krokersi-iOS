@@ -2,6 +2,7 @@
   "appId": "pl.krokersi.app",
   "appName": "Krokersi",
   "webDir": "www",
+  "backgroundColor": "#000000",
   "server": {
     "url": "https://krokersi.com/app/",
     "allowNavigation": [
