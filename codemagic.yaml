@@ -22,6 +22,7 @@ workflows:
           npx capacitor-assets generate --ios
           npx cap sync ios
           cd ios/App
+          agvtool new-version -all $BUILD_NUMBER
           xcode-project use-profiles
           xcode-project build-ipa --project "App.xcodeproj" --scheme "App"
     artifacts:
