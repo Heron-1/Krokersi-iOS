@@ -13,11 +13,13 @@ workflows:
       - name: Instalacja i Build
         script: |
           npm install
+          npm install @capacitor/assets --no-save
           mkdir -p www
           echo "<!DOCTYPE html><html><head><title>Krokersi</title></head><body></body></html>" > www/index.html
           rm -rf ios
           chmod -R +x node_modules/.bin/ || true
           npx cap add ios
+          npx capacitor-assets generate --ios
           npx cap sync ios
           cd ios/App
           xcode-project use-profiles
