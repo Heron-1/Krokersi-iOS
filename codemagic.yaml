@@ -20,7 +20,6 @@ workflows:
           chmod -R +x node_modules/.bin/ || true
           npx cap add ios
           
-          # Automatyczna obsługa pliku icon.jpg
           if [ -f "assets/icon.jpg" ]; then
             cp assets/icon.jpg assets/icon.png
           fi
@@ -29,10 +28,10 @@ workflows:
           npx cap sync ios
           cd ios/App
           
-          # Uprawnienia czujników ruchu (naprawia crash)
-          /usr/libexec/PlistBuddy -c "Add :NSMotionUsageDescription string 'Aplikacja Krokersi używa czujników ruchu do zliczania Twoich kroków w wyzwaniach.'" App/Info.plist || /usr/libexec/PlistBuddy -c "Set :NSMotionUsageDescription 'Aplikacja Krokersi używa czujników ruchu do zliczania Twoich kroków w wyzwaniach.'" App/Info.plist
+          # Uprawnienia czujników ruchu i GPS (naprawia kroki i trasę)
+          /usr/libexec/PlistBuddy -c "Add :NSMotionUsageDescription string 'Aplikacja Krokersi używa czujników do zliczania kroków.'" App/Info.plist || /usr/libexec/PlistBuddy -c "Set :NSMotionUsageDescription 'Aplikacja Krokersi używa czujników do zliczania kroków.'" App/Info.plist
+          /usr/libexec/PlistBuddy -c "Add :NSLocationWhenInUseUsageDescription string 'Aplikacja Krokersi używa GPS do zapisu trasy na mapie.'" App/Info.plist || /usr/libexec/PlistBuddy -c "Set :NSLocationWhenInUseUsageDescription 'Aplikacja Krokersi używa GPS do zapisu trasy na mapie.'" App/Info.plist
           
-          # Unikalny numer wersji
           /usr/libexec/PlistBuddy -c "Set :CFBundleVersion $BUILD_NUMBER" App/Info.plist
           
           xcode-project use-profiles
