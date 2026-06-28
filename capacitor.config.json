@@ -2,9 +2,11 @@
   "appId": "pl.krokersi.app",
   "appName": "Krokersi",
   "webDir": "www",
-  "bundledWebRuntime": false,
   "server": {
-    "url": "https://krokersi.com/app/index.php",
-    "cleartext": true
+    "url": "https://krokersi.com/app/",
+    "allowNavigation": [
+      "krokersi.com",
+      "*.krokersi.com"
+    ]
   }
 }
