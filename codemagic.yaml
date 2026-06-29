@@ -32,7 +32,7 @@ workflows:
           
           /usr/libexec/PlistBuddy -c "Add :NSMotionUsageDescription string 'Aplikacja Krokersi używa czujników do zliczania kroków.'" App/Info.plist || /usr/libexec/PlistBuddy -c "Set :NSMotionUsageDescription 'Aplikacja Krokersi używa czujników do zliczania kroków.'" App/Info.plist
           /usr/libexec/PlistBuddy -c "Add :NSLocationWhenInUseUsageDescription string 'Aplikacja Krokersi używa GPS do zapisu trasy na mapie.'" App/Info.plist || /usr/libexec/PlistBuddy -c "Set :NSLocationWhenInUseUsageDescription 'Aplikacja Krokersi używa GPS do zapisu trasy na mapie.'" App/Info.plist
-          /usr/libexec/PlistBuddy -c "Add :GADApplicationIdentifier string 'ca-app-pub-6681851361306996~6816324430'" App/Info.plist || /usr/libexec/PlistBuddy -c "Set :GADApplicationIdentifier 'ca-app-pub-6681851361306996~6816324430'" App/Info.plist
+          /usr/libexec/PlistBuddy -c "Add :GADApplicationIdentifier string 'ca-app-pub-6681851361306996~8893544009'" App/Info.plist || /usr/libexec/PlistBuddy -c "Set :GADApplicationIdentifier 'ca-app-pub-6681851361306996~8893544009'" App/Info.plist
           /usr/libexec/PlistBuddy -c "Add :NSUserTrackingUsageDescription string 'Zgoda na reklamy pozwala utrzymać darmową wersję Krokersów.'" App/Info.plist || /usr/libexec/PlistBuddy -c "Set :NSUserTrackingUsageDescription 'Zgoda na reklamy pozwala utrzymać darmową wersję Krokersów.'" App/Info.plist
           
           /usr/libexec/PlistBuddy -c "Set :CFBundleVersion $BUILD_NUMBER" App/Info.plist
